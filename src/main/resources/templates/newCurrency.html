@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>Currency page</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/currency}" th:object="${currency}">
+  <label for="currency_info">Валюта</label>
+  <select th:object="${currency.info}" th:field="*{currencyId}"
+          id="currency_info">
+    <option th:each="currency : ${currencyInfoList}"
+            th:value="${currency.currencyId}"
+            th:text="${currency.currencyName}">
+    </option>
+  </select>
+  <div>
+    <label for="date_from">Дата от</label>
+    <input type="date" th:field="*{dateFrom}" th:max="${maxDate}" id="date_from">
+    <br/>
+    <label for="date_to">Дата до</label>
+    <input type="date" th:field="*{dateTo}" th:max="${maxDate}" id="date_to">
+    <br/>
+    <input type="submit" value="Выполнить"/>
+  </div>
+</form>
+</body>
+</html>
